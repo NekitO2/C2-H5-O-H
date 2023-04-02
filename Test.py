@@ -2,275 +2,339 @@ import telebot
 from telebot import types
 
 bot = telebot.TeleBot('5891506134:AAHYfMnjRB6hAvuAOvQJYv_J7BEO1ytcKY8')
+markup_main = types.InlineKeyboardMarkup(row_width = 1)
+button1 = types.InlineKeyboardButton(text = 'Материнская плата', callback_data = 'Motherboard')
+button2 = types.InlineKeyboardButton(text = 'Процессор', callback_data = 'CPU')
+button3 = types.InlineKeyboardButton(text = 'Кулер', callback_data = 'FAN')
+button4 = types.InlineKeyboardButton(text = 'Видеокарта', callback_data = 'GPU')
+button5 = types.InlineKeyboardButton(text = 'Память', callback_data = 'RAM/ROM')
+button6 = types.InlineKeyboardButton(text = 'Блок питания', callback_data = 'Power')
+markup_main.add(button1, button2, button3, button4, button5, button6)
+
+markup_cpu = types.InlineKeyboardMarkup(row_width = 4)
+button1 = types.InlineKeyboardButton(text = 'Intel Core i3', callback_data = 'i3') 
+button2 = types.InlineKeyboardButton(text = 'Intel Core i5', callback_data = 'i5') 
+button3 = types.InlineKeyboardButton(text = 'Intel Core i7', callback_data = 'i7') 
+button4 = types.InlineKeyboardButton(text = 'Intel Core i9', callback_data = 'i9') 
+markup_cpu.add(button1, button2, button3, button4)
+
+markup_motherboard = types.InlineKeyboardMarkup(row_width = 4)
+button1 = types.InlineKeyboardButton(text = 'Asus', callback_data = 'Asus') 
+button2 = types.InlineKeyboardButton(text = 'MSI', callback_data = 'MSI(motherboard)')
+button3 = types.InlineKeyboardButton(text = 'Gigabyte', callback_data = 'Gigabyte(motherboard)')
+button4 = types.InlineKeyboardButton(text = 'Asrock', callback_data = 'Asrock')
+markup_motherboard.add(button1, button2, button3, button4)
+
+markup_fan = types.InlineKeyboardMarkup(row_width = 4)
+button1 = types.InlineKeyboardButton(text = 'ID-Cooling', callback_data = 'ID-Cooling')
+button2 = types.InlineKeyboardButton(text = 'Zalman', callback_data = 'Zalman(fan)')
+button3 = types.InlineKeyboardButton(text = 'DeepCool', callback_data = 'DeepCool')
+button4 = types.InlineKeyboardButton(text = 'Cooler Master', callback_data = 'Cooler Master(fan)')
+markup_fan.add(button1, button2, button3, button4)
+
+markup_gpu = types.InlineKeyboardMarkup(row_width = 3)
+button1 = types.InlineKeyboardButton(text = 'MSI', callback_data= 'MSI(gpu)') 
+button2 = types.InlineKeyboardButton(text = 'Gigabyte', callback_data = 'Gigabyte(gpu)')
+button3 = types.InlineKeyboardButton(text = 'Palit', callback_data = 'Palit')
+markup_gpu.add(button1, button2, button3)
+
+markup_ram_rom = types.InlineKeyboardMarkup(row_width = 2)
+button1 = types.InlineKeyboardButton(text = 'Оперативная память', callback_data = 'RAM')
+button2 = types.InlineKeyboardButton(text = 'HDD/SSD', callback_data = 'ROM')
+markup_ram_rom.add(button1, button2)
+
+markup_ram = types.InlineKeyboardMarkup(row_width = 3)
+button1 = types.InlineKeyboardButton(text = 'Corsair', callback_data = 'Corsair')
+button2 = types.InlineKeyboardButton(text = 'Kingston Fury', callback_data = 'Kingston Fury')
+button3 = types.InlineKeyboardButton(text = 'Toshiba', callback_data = 'Toshiba')
+markup_ram.add(button1, button2, button3)
+
+markup_rom = types.InlineKeyboardMarkup(row_width = 2)
+button1 = types.InlineKeyboardButton(text = 'HDD', callback_data = 'HDD')
+button2 = types.InlineKeyboardButton(text = 'SSD', callback_data = 'SSD')
+markup_rom.add(button1, button2)
+
+markup_hdd = types.InlineKeyboardMarkup(row_width = 4)
+button1 = types.InlineKeyboardButton(text = 'WD Gold', callback_data = 'WD Gold')
+button2 = types.InlineKeyboardButton(text = 'WD Purple Pro', callback_data = 'WD Purple Pro')
+button3 = types.InlineKeyboardButton(text = 'WD Red Pro', callback_data = 'WD Red Pro')
+button4 = types.InlineKeyboardButton(text = 'Seagate', callback_data = 'Seagate')
+markup_hdd.add(button1, button2, button3, button4)
+
+markup_ssd = types.InlineKeyboardMarkup(row_width = 4)
+button1 = types.InlineKeyboardButton(text = 'Intel', callback_data = 'Intel')
+button2 = types.InlineKeyboardButton(text = 'WD Ultrastar', callback_data = 'WD Ultrastar')
+button3 = types.InlineKeyboardButton(text = 'Kingston', callback_data = 'Kingston')
+button4 = types.InlineKeyboardButton(text = 'Samsung', callback_data = 'Samsung')
+markup_ssd.add(button1, button2, button3, button4)
+
+markup_power = types.InlineKeyboardMarkup(row_width = 4)
+button1 = types.InlineKeyboardButton(text = 'Cooler Master', callback_data = 'Cooler Master(power)')
+button2 = types.InlineKeyboardButton(text = 'Thermaltake', callback_data = 'Thermaltake')
+button3 = types.InlineKeyboardButton(text = 'Gigabyte', callback_data = 'Gigabyte(power)')
+button4 = types.InlineKeyboardButton(text = 'Zalman', callback_data = 'Zalman(power)')
+markup_power.add(button1, button2, button3, button4)
 
 @bot.message_handler(commands=['start'])
 
 def send_start_message(message):
 
+    bot.send_message(message.chat.id, 'Выберите один из комплектующих ПК', reply_markup = markup_main)
 
-    markup = types.InlineKeyboardMarkup(row_width = 1)
-    button1 = types.InlineKeyboardButton(text = 'Турция', callback_data = 'Турция')
-    button2 = types.InlineKeyboardButton(text = 'Египет', callback_data = 'Египет')
-    button3 = types.InlineKeyboardButton(text = 'Россия', callback_data = 'Россия')
-    markup.add(button1, button2, button3)
-    bot.send_message(message.chat.id, 'Выберите страну для путешествия', reply_markup = markup)
+@bot.callback_query_handler(func = lambda call: call.data == 'CPU')
 
-@bot.callback_query_handler(func = lambda callback: callback.data == 'Турция')
+def send_cpu(call):
 
-def send_turkey(callback):
+    bot.send_message(call.message.chat.id, 'Выберите модель прoцессора', reply_markup = markup_cpu)
 
-    markup = types.InlineKeyboardMarkup(row_width = 3)
-    button1 = types.InlineKeyboardButton(text = 'Анталья', callback_data = 'Анталья')
-    button2 = types.InlineKeyboardButton(text = 'Стамбул', callback_data = 'Стамбул')
-    markup.add(button1, button2)
+@bot.callback_query_handler(func = lambda call: call.data == 'Motherboard')
 
-    bot.send_message(callback.message.chat.id, 'Какой город вас интересует', reply_markup = markup)
+def send_motherboard(call):
 
-@bot.callback_query_handler(func = lambda callback: callback.data == 'Египет')
+    bot.send_message(call.message.chat.id, 'Выберите фирму производитель', reply_markup = markup_motherboard)
 
-def send_egipet(callback):
+@bot.callback_query_handler(func = lambda call: call.data == 'FAN')
 
-    markup = types.InlineKeyboardMarkup(row_width = 3)
-    button1 = types.InlineKeyboardButton(text = 'Каир', callback_data = 'Каир')
-    button2 = types.InlineKeyboardButton(text = 'Александрия', callback_data = 'Александрия')
-    markup.add(button1, button2)
-    bot.send_message(callback.message.chat.id, 'Выберите город', reply_markup = markup)
+def send_fan(call):
 
-@bot.callback_query_handler(func = lambda callback: callback.data == 'Россия')
+    bot.send_message(call.message.chat.id, 'Выберите фирму произвоителя', reply_markup = markup_fan)
 
-def send_russia(callback):
+@bot.callback_query_handler(func = lambda call: call.data == 'GPU')
 
-    markup = types.InlineKeyboardMarkup(row_width = 3)
-    button1 = types.InlineKeyboardButton(text = 'Сочи', callback_data = 'Сочи')
-    button2 = types.InlineKeyboardButton(text = 'Москва', callback_data = 'Москва')
-    markup.add(button1, button2)
-    bot.send_message(callback.message.chat.id, 'Выберите город', reply_markup = markup)
+def send_gpu(call):
 
-@bot.callback_query_handler(func = lambda callback: callback.data == 'Стамбул')
+    bot.send_message(call.message.chat.id, 'Выберите фирму производитель', reply_markup = markup_gpu)
 
-def send_stambul(callback):
+@bot.callback_query_handler(func = lambda call: call.data == 'RAM/ROM')
 
-    markup = types.InlineKeyboardMarkup(row_width = 3)
-    button1 = types.InlineKeyboardButton(text = 'Флорента', callback_data = 'Флорента')
-    button2 = types.InlineKeyboardButton(text = 'Пера Пэлэйс', callback_data = 'Пера Пэлэйс')
-    markup.add(button1, button2)
-    bot.send_message(callback.message.chat.id, 'Выберите отель', reply_markup = markup)
+def send_ram_rom(call):
 
-@bot.callback_query_handler(func = lambda callback: callback.data == 'Анталья')
+    bot.send_message(call.message.chat.id, 'Выберите тип памяти', reply_markup = markup_ram_rom)
 
-def send_antalia(callback):
+@bot.callback_query_handler(func = lambda call: call.data == 'RAM')
 
-    markup = types.InlineKeyboardMarkup(row_width = 3)
-    button1 = types.InlineKeyboardButton(text = 'Адонис', callback_data = 'Адонис')
-    button2 = types.InlineKeyboardButton(text = 'Фалкон', callback_data = 'Фалкон')
-    markup.add(button1, button2)
-    bot.send_message(callback.message.chat.id, 'Выберите отель', reply_markup = markup)
+def send_ram(call):
 
-@bot.callback_query_handler(func = lambda callback: callback.data == 'Каир')
+    bot.send_message(call.message.chat.id, 'Выберите фирму производитель', reply_markup = markup_ram)
 
-def send_kair(callback):
+@bot.callback_query_handler(func = lambda call: call.data == 'ROM')
 
-    markup = types.InlineKeyboardMarkup(row_width = 3)
-    button1 = types.InlineKeyboardButton(text = 'Абдин Пэлэйс', callback_data = 'Абдин Пэлэйс')
-    button2 = types.InlineKeyboardButton(text = 'Амин', callback_data = 'Амин')
-    markup.add(button1, button2)
-    bot.send_message(callback.message.chat.id, 'Выберите отель', reply_markup = markup)
+def send_rom(call):
 
-@bot.callback_query_handler(func = lambda callback: callback.data == 'Александрия')
+    bot.send_message(call.message.chat.id, 'Выберите тип памяти', reply_markup = markup_rom)
 
-def send_alexandria(callback):
+@bot.callback_query_handler(func = lambda call: call.data == 'HDD')
 
-    markup = types.InlineKeyboardMarkup(row_width = 3)
-    button1 = types.InlineKeyboardButton(text = 'Плаза', callback_data = 'Плаза')
-    button2 = types.InlineKeyboardButton(text = 'Хэлман', callback_data = 'Хэлман')
-    markup.add(button1, button2)
-    bot.send_message(callback.message.chat.id, 'Выберите отель', reply_markup = markup)
+def send_hdd(call):
 
-@bot.callback_query_handler(func = lambda callback: callback.data == 'Сочи')
+    bot.send_message(call.message.chat.id, 'Выберите фирму производителя', reply_markup = markup_hdd)
 
-def send_sochi(callback):
+@bot.callback_query_handler(func = lambda call: call.data == 'SSD')
 
-    markup = types.InlineKeyboardMarkup(row_width = 3)
-    button1 = types.InlineKeyboardButton(text = 'Арфа', callback_data = 'Арфа')
-    button2 = types.InlineKeyboardButton(text = 'Лес', callback_data = 'Лес')
-    markup.add(button1, button2)
-    bot.send_message(callback.message.chat.id, 'Выберите отель', reply_markup = markup)
+def send_ssd(call):
 
-@bot.callback_query_handler(func = lambda callback: callback.data == 'Москва')
+    bot.send_message(call.message.chat.id, 'Выберите фирму производителя', reply_markup = markup_ssd)
 
-def send_moscow(callback):
+@bot.callback_query_handler(func = lambda call: call.data == 'Power')
 
-    markup = types.InlineKeyboardMarkup(row_width = 3)
-    button1 = types.InlineKeyboardButton(text = 'Националь', callback_data = 'Националь')
-    button2 = types.InlineKeyboardButton(text = 'Хилтон', callback_data = 'Хилтон')
-    markup.add(button1, button2)
-    bot.send_message(callback.message.chat.id, 'Выберите отель', reply_markup = markup)
+def send_power(call):
 
-@bot.callback_query_handler(func = lambda callback: callback.data == 'Адонис')
+    bot.send_message(call.message.chat.id, 'Выберите фирму производителя', reply_markup = markup_power)
 
-def send_adonis(callback):
- 
-    bot.send_message(callback.message.chat.id, '''В конце веселого и спокойного дня вы можете уютно погрузиться в сон в наших номерах с необыкновенной панорамой Средиземного моря и гор Торос.
 
-                                                    Отель Adonis благодаря прекрасной морской панораме, бесподобному расположению и разнообразию номеров, соответствующих высоким стандартам качетсва, предлагает отпуск, который создаст впечатление уютного дома.\n\n\n\nhttps://www.adonishotel.com/''')
 
-@bot.callback_query_handler(func = lambda callback: callback.data == 'Фалкон')
 
-def send_falkon(callback):
-    bot.send_message(callback.message.chat.id, '''Отель Falcon расположен в центре Антальи. На территории обустроен частный пляж с платформой, бассейны и лужайка в саду с видом на Средиземное море. К услугам гостей традиционная турецкая баня, сауна и теннисный корт.
 
-                                                Во всех номерах постелен паркетный пол и имеется балкон с видом на море и окрестности. В число удобств входит кондиционер, мини-бар и спутниковое телевидение. Собственная ванная комната укомплектована феном.
 
-                                                В главном ресторане отеля Falcon предлагаются блюда турецкой и интернациональной кухни, которые сервируются в формате «шведского стола» в помещении и на открытом воздухе. В ресторане и во всех барах представлен ассортимент напитков.
 
-                                                Гости могут посетить фитнес-центр и заказать расслабляющий массаж. На территории отеля оборудован теннисный корт и открытый бассейн с водными горками. В местах общего пользования предоставляется бесплатный Wi-Fi.
 
-                                                Отель находится всего в 5 км от старинного района Калеичи — старого города Антальи и в 17 км от международного аэропорта Анталья. Стойка регистрации открыта круглосуточно. Гости могут воспользоваться камерой хранения багажа.\n\n\n\nhttps://www.booking.com/hotel/tr/club-falcon.ru.html''')
 
 
-@bot.callback_query_handler(func = lambda callback: callback.data == 'Флорента')
 
-def send_florenta(callback):
-    bot.send_message(callback.message.chat.id, '''Отель Florenta расположен в центре Старого города, в 600 метрах от собора Святой Софии и дворца Топкапы. К услугам гостей номера с кондиционером, бесплатным Wi-Fi, телевизором с плоским экраном и мини-баром.
 
-                                                Все номера отеля Florenta обставлены современной мебелью. Собственная ванная комната укомплектована феном. Из некоторых номеров можно выйти на французский балкон.
 
-                                                На террасе или в крытом лаундже для гостей сервируют завтрак «шведский стол». В баре на террасе подают прохладительные напитки. Кроме того, гости могут заказать блюда местной кухни в близлежащих ресторанах.\n\n\n\nhttps://www.booking.com/hotel/tr/florenta-hotel-istanbul.ru.html?aid=356980&label=gog235jc-1FCAMo5AE49gJIIVgDaMIBiAEBmAEhuAEXyAEM2AEB6AEB-AECiAIBqAIDuAL2g9ygBsACAdICJGI0MDY1ZDg0LTliZDMtNGNmYi05NzdjLWZlNDg1YzYxY2MzM9gCBeACAQ&sid=868c31d61b326123312f441edafac0d7&dest_id=-755070;dest_type=city;dist=0;group_adults=2;group_children=0;hapos=1;hpos=1;no_rooms=1;req_adults=2;req_children=0;room1=A%2CA;sb_price_type=total;sr_order=popularity;srepoch=1679229734;srpvid=a8c559526df10584;type=total;ucfs=1&#hotelTmpl''')
 
-@bot.callback_query_handler(func = lambda callback: callback.data == 'Пера Пэлэйс')
 
-def send_pera_palace(callback):
 
-    bot.send_message(callback.message.chat.id, '''Отель-музей особой категории Pera Palace, построенный в 1892 году архитектором франко-турецкого происхождения Александром Валлаури, оформлен в неоклассическом и восточном стилях, которые гармонично сочетаются с дизайном в стиле ар-нуво. Из роскошных номеров открывается великолепный вид на залив Золотой Рог и исторический район Пера Стамбула. К услугам гостей крытый бассейн. Поездка на метро до популярных торговых центров Cevahir, Kanyon и Zorlu занимает всего 20 минут.
+@bot.callback_query_handler(func = lambda call: call.data == 'i3')
 
-                                                В классических номерах и люксах использованы европейские и османские элементы декора. Все номера располагают деревянным полом, французскими окнами, телевизором и мини-баром. Ванные комнаты отделаны мрамором в стиле традиционного хаммама. В большинстве номеров и люксов имеется балкон с видом на исторический район Пера и залив Золотой Рог.
+def send_i3(call):
 
-                                                В ресторане Agatha, названном в честь знаменитого автора детективов Агаты Кристи, подают блюда современной турецкой кухни. Бар с террасой Orient пользуется популярностью среди представителей высшего света Стамбула и путешественников из многих стран мира. Кроме того, гости могут посетить чайный лаундж Kubbeli Saloon с неповторимой атмосферой и живой фортепианной музыкой.
+    bot.edit_message_text(chat_id = call.message.chat.id, message_id = call.message.message_id, text ='https://www.citilink.ru/product/processor-intel-s-core-i3-13100f-soc-1700-3-4ghz-oem-1901393/', reply_markup = markup_cpu)
 
-                                                В классической французской кондитерской Patisserie de Pera можно заказать превосходные турецкие и французские сладости ручной работы, в том числе пирожные, печенье макарон, торты и домашний шоколад.
+@bot.callback_query_handler(func = lambda call: call.data == 'i5')
 
-                                                В спа-центре Pera by Spa Soul к услугам гостей хаммам с пенистой ванной и классической мраморной полкой с подогревом, паровая баня, гидромассажная ванна, сауна и полностью оборудованный тренажерный зал. Крытый бассейн с функцией гидромассажа работает в летний и зимний сезон.\n\n\n\nhttps://www.booking.com/hotel/tr/pera-palace.ru.html?aid=356980&label=gog235jc-1FCAMo5AE49gJIIVgDaMIBiAEBmAEhuAEXyAEM2AEB6AEB-AECiAIBqAIDuAL2g9ygBsACAdICJGI0MDY1ZDg0LTliZDMtNGNmYi05NzdjLWZlNDg1YzYxY2MzM9gCBeACAQ&sid=868c31d61b326123312f441edafac0d7&dest_id=-755070;dest_type=city;dist=0;group_adults=2;group_children=0;hapos=1;hpos=1;no_rooms=1;req_adults=2;req_children=0;room1=A%2CA;sb_price_type=total;sr_order=popularity;srepoch=1679229885;srpvid=fc7a599ec943020c;type=total;ucfs=1&#hotelTmpl''')
+def send_i5(call):
 
-@bot.callback_query_handler(func = lambda callback: callback.data == 'Абдин Пэлэйс')
+    bot.edit_message_text(chat_id = call.message.chat.id, message_id = call.message.message_id, text ='https://www.citilink.ru/product/processor-intel-s-core-i5-13600kf-soc-1700-3-5ghz-oem-1872489/', reply_markup = markup_cpu)
 
-def send_abdeen_palace(callback):
+@bot.callback_query_handler(func = lambda call: call.data == 'i7')
 
-    bot.send_message(callback.message.chat.id, '''Хостел Abdeen Palace расположен в Каире, в 1,1 км от площади Тахрир. К услугам гостей номера с кондиционером и общий лаундж. К услугам гостей семейные номера и терраса. В хостеле работает круглосуточная стойка регистрации, производится доставка еды и напитков в номер и предоставляются услуги обмена валюты.
+def send_i7(call):
 
-                                                Все номера хостела оснащены телевизором с плоским экраном и спутниковыми каналами. Номера оснащены холодильником.
+    bot.edit_message_text(chat_id = call.message.chat.id, message_id = call.message.message_id, text ='https://www.citilink.ru/product/processor-intel-s-core-i7-13700kf-soc-1700-3-4ghz-oem-1873956/', reply_markup = markup_cpu)
 
-                                                Ежедневно в хостеле Abdeen Palace сервируется континентальный завтрак.
+@bot.callback_query_handler(func = lambda call: call.data == 'i9')
 
-                                                Рынок Хан аль-Халили находится в 2 км от хостела, а Египетский музей — в 2,4 км. Расстояние от хостела Abdeen Palace до международного аэропорта Каира составляет 16 км.\n\n\n\nhttps://www.booking.com/hotel/eg/abdeen-palace.ru.html?label=yan104jc-1DCAMoQzjbA0ghWANowgGIAQGYASG4ARfIAQzYAQPoAQH4AQKIAgGoAgO4AtaZ4qAGwAIB0gIkNjhjMWM1OGItMzc5OC00ZjdiLWE2YzYtMTAxMWRlZWYyOTk32AIE4AIB&sid=12697a80b953e23b5039567152c357da&aid=357027&ucfs=1&arphpl=1&dest_id=-290692&dest_type=city&group_adults=2&req_adults=2&no_rooms=1&group_children=0&req_children=0&hpos=2&hapos=2&sr_order=popularity&srpvid=f9f8757fedc800df&srepoch=1679330560&from_sustainable_property_sr=1&from=searchresults#hotelTmpl''')
+def send_i9(call):
 
-@bot.callback_query_handler(func = lambda callback: callback.data == 'Амин')
+    bot.edit_message_text(chat_id = call.message.chat.id, message_id = call.message.message_id, text ='https://www.citilink.ru/product/processor-intel-s-core-i9-13900kf-soc-1700-3-0ghz-oem-1881986/', reply_markup = markup_cpu)
 
-def send_amin(callback):
+@bot.callback_query_handler(func = lambda call: call.data == 'Asus')
 
-    bot.send_message(callback.message.chat.id, '''Отель Amin расположен в Каире, в 300 метрах от главного корпуса Американского университета. К услугам гостей общий лаундж, круглосуточная стойка регистрации и терраса для загара. В ресторане подают стейки, а также блюда местной и ближневосточной кухни.
+def send_asus(call):
 
-                                                В каждом номере отеля Amin есть кондиционер, шкаф для одежды и собственная ванная комната. В числе удобств — телевизор с плоским экраном. Из некоторых номеров открывается вид на город.
+    bot.edit_message_text(chat_id = call.message.chat.id, message_id = call.message.message_id, text ='https://www.citilink.ru/product/materinskaya-plata-asus-rog-maximus-z690-formula-soc-1700-intel-z690-4-1646232/', reply_markup = markup_motherboard)
 
-                                                Ежедневно в отеле Amin подают континентальный завтрак. По четвергам в вечернее время сервируют бесплатный ужин «шведский стол».
+@bot.callback_query_handler(func = lambda call: call.data == 'MSI(motherboard)')
 
-                                                В 600 метрах от отеля находится Каирский музей. Расстояние до международного аэропорта Каира составляет 17 км.\n\n\n\nhttps://www.booking.com/hotel/eg/amin.ru.html?aid=357027&label=yan104jc-1FCAMoQzjbA0ghWANowgGIAQGYASG4ARfIAQzYAQHoAQH4AQKIAgGoAgO4AtaZ4qAGwAIB0gIkNjhjMWM1OGItMzc5OC00ZjdiLWE2YzYtMTAxMWRlZWYyOTk32AIF4AIB&sid=12697a80b953e23b5039567152c357da&dest_id=-290692;dest_type=city;dist=0;group_adults=2;group_children=0;hapos=6;hpos=6;no_rooms=1;req_adults=2;req_children=0;room1=A%2CA;sb_price_type=total;sr_order=popularity;srepoch=1679330560;srpvid=f9f8757fedc800df;type=total;ucfs=1&#hotelTmpl''')
+def send_msi_motherboard(call):
 
+    bot.edit_message_text(chat_id = call.message.chat.id, message_id = call.message.message_id, text ='https://www.citilink.ru/product/materinskaya-plata-msi-mpg-z690-force-wifi-soc-1700-intel-z690-4xddr5-1845408/', reply_markup = markup_motherboard)
 
-@bot.callback_query_handler(func = lambda callback: callback.data == 'Плаза')
+@bot.callback_query_handler(func = lambda call: call.data == 'Gigabyte(motherboard)')
 
-def send_plaza(callback):
+def send_gigabyte(call):
 
-    bot.send_message(callback.message.chat.id, '''К услугам гостей отеля, расположенного на прогулочной улице вдоль моря в Александрии, предоставляются просторные номера, в которых можно пользоваться бесплатным Wi-Fi. Из некоторых номеров открывается вид на дворец Сафа или на пляж и причал Санстефано. Он находится рядом с торговым центром Elite San Stefano.
+    bot.edit_message_text(chat_id = call.message.chat.id, message_id = call.message.message_id, text ='https://www.citilink.ru/product/materinskaya-plata-gigabyte-z690-aorus-master-soc-1700-intel-z690-4xdd-1618777/', reply_markup = markup_motherboard)
 
-                                                Номера и люксы отеля Plaza Alexandria оборудованы кондиционером. В них также можно смотреть программы кабельного телевидения. Некоторые номера располагают балконом. Во всех номерах предоставляется мини-бар и роскошные туалетно-косметические принадлежности в ванной комнате.
+@bot.callback_query_handler(func = lambda call: call.data == 'Asrock')
 
-                                                Ежедневно подаётся завтрак "шведский стол". Вечером гости могут отведать различные интернациональные и местные блюда. Также производится обслуживание номеров, включая доставку завтрака.
+def send_asrock(call):
 
-                                                На стойке регистрации можно приобрести газеты. Персонал круглосуточной стойки регистрации поможет воспользоваться услугами прачечной и химчистки.\n\n\n\nhttps://www.booking.com/hotel/eg/plaza.ru.html?aid=357027&label=yan104jc-1FCAMoQzjbA0ghWANowgGIAQGYASG4ARfIAQzYAQHoAQH4AQKIAgGoAgO4AtaZ4qAGwAIB0gIkNjhjMWM1OGItMzc5OC00ZjdiLWE2YzYtMTAxMWRlZWYyOTk32AIF4AIB&sid=12697a80b953e23b5039567152c357da&dest_id=-290263;dest_type=city;dist=0;group_adults=2;group_children=0;hapos=10;hpos=10;no_rooms=1;req_adults=2;req_children=0;room1=A%2CA;sb_price_type=total;sr_order=popularity;srepoch=1679331380;srpvid=9d0077199eae0934;type=total;ucfs=1&#hotelTmpl''')
+    bot.edit_message_text(chat_id = call.message.chat.id, message_id = call.message.message_id, text ='https://www.citilink.ru/product/materinskaya-plata-asrock-z790-pro-rs-wifi-soc-1700-intel-z790-4xddr5-1896155/', reply_markup = markup_motherboard)
 
-@bot.callback_query_handler(func = lambda callback: callback.data == 'Хэлман')
+@bot.callback_query_handler(func = lambda call: call.data == 'ID-Cooling')
 
-def send_helman(callback):
+def send_id_cooling(call):
 
-    bot.send_message(callback.message.chat.id, '''Отель Helnan Palestine расположен посреди пышного сада площадью 1,4 кв. км, из которого открывается вид на бухту в Средиземном море. К услугам гостей открытый бассейн и отдельная терраса для загара рядом с морем. В каждом номере предоставляется бесплатный доступ в интернет и имеется балкон с видом на море.
+    bot.edit_message_text(chat_id = call.message.chat.id, message_id = call.message.message_id, text ='https://www.citilink.ru/product/sistema-ohlazhdeniya-id-cooling-zoomflow-360-xt-soc-am4-1151-1200-2066-1622277/', reply_markup = markup_fan)
 
-                                                    Все номера отеля Helnan Palestine отличаются просторной планировкой и обставлены роскошной мебелью. На полу постелено ковровое покрытие в восточном стиле. В числе удобств — принадлежности для приготовления горячих напитков и спутниковое телевидение. Из некоторых номеров открывается вид на исторический дворец Монтаза.
+@bot.callback_query_handler(func = lambda call: call.data == 'Zalman(fan)')
 
-                                                    Гости могут полностью отрешиться от забот и просто наслаждаться солнцем. В жаркие дни будет приятно освежиться в бассейне.
+def send_zalman_fan(call):
 
-                                                    В ресторанах и барах отеля Palestine представлен широкий выбор блюд и напитков, которые подают в помещении и на открытом воздухе. В стильном пабе Bodega вечером устраивают развлекательные мероприятия.
+    bot.edit_message_text(chat_id = call.message.chat.id, message_id = call.message.message_id, text ='https://www.citilink.ru/product/ustroistvo-ohlazhdeniya-kuler-zalman-cnps20x-soc-fm2-am2-am3-am4-1150-1373161/', reply_markup = markup_fan)
 
-                                                    Отель Helnan находится в тихом, уединенном месте всего в 12 км от оживленного центра города Александрия и буквально в нескольких шагах от песчаного пляжа.\n\n\n\nhttps://www.booking.com/hotel/eg/helnan-palestine.ru.html?aid=357027&label=yan104jc-1FCAMoQzjbA0ghWANowgGIAQGYASG4ARfIAQzYAQHoAQH4AQKIAgGoAgO4AtaZ4qAGwAIB0gIkNjhjMWM1OGItMzc5OC00ZjdiLWE2YzYtMTAxMWRlZWYyOTk32AIF4AIB&sid=12697a80b953e23b5039567152c357da&dest_id=-290263;dest_type=city;dist=0;group_adults=2;group_children=0;hapos=11;hpos=11;no_rooms=1;req_adults=2;req_children=0;room1=A%2CA;sb_price_type=total;sr_order=popularity;srepoch=1679331380;srpvid=9d0077199eae0934;type=total;ucfs=1&#hotelTmpl''')
+@bot.callback_query_handler(func = lambda call: call.data == 'DeepCool')
 
-@bot.callback_query_handler(func = lambda callback: callback.data == 'Арфа')
+def send_deepcool(call):
 
-def send_arfa(callback):
+    bot.edit_message_text(chat_id = call.message.chat.id, message_id = call.message.message_id, text ='https://www.citilink.ru/product/sistema-vodyanogo-ohlazhdeniya-deepcool-le500-soc-am5-am4-1151-1200-17-1783514/', reply_markup = markup_fan)
 
-    bot.send_message(callback.message.chat.id, '''Здесь созданы все условия для комфортного проживания — есть кондиционер, холодильник, телевизор, фен, утюг, чай/кофе в номерах, чайник, микроволновая печь, посудомойка, кухонная плита, сейф, отопление, терраса, мини-бар. В гостинице около 171 номеров — можно выбрать любой понравившийся и узнать подробнее, что в нём. По запросу предоставляются номера для некурящих. Уборка — каждый день.
+@bot.callback_query_handler(func = lambda call: call.data == 'Cooler Master(fan)')
 
-                                                Берите своих питомцев — им будут рады!
+def send_cooler_master(call):
 
-                                                В гостинице есть ресторан, бар, тренажёрный зал, сауна, конференц-зал. Можно прогуляться по территории и в саду. И вы наверняка захотите отдохнуть у бассейна — он тут тоже есть. Причём крытый, открытый, сезонный. Море тут близко — до него всего 92 м, поэтому легко можно планировать пляжный отдых. Есть возможность взять напрокат машину, велосипед.
+    bot.edit_message_text(chat_id = call.message.chat.id, message_id = call.message.message_id, text ='https://www.citilink.ru/product/ustroistvo-ohlazhdeniya-kuler-cooler-master-watercooler-ml120l-v2-rgb-1457484/', reply_markup = markup_fan)
 
-                                                У каждого гостя будет доступ в интернет, вы сможете выложить фотографии, отправить файл или позвонить родным по видео.
+@bot.callback_query_handler(func = lambda call: call.data == 'MSI(gpu)')
 
-                                                Учитывайте время заселения в гостиницу. Заезд здесь начинается с 14:00, выехать нужно до 12:00. Даже если вы прибудете поздно ночью, вас встретят на круглосуточной стойке регистрации и помогут с размещением. Лифт внутри есть.
+def send_msi_gpu(call):
 
-                                                Если вы на машине, можете оставить её на парковке. Если вы добираетесь своим ходом, воспользуйтесь услугой трансфера.
+    bot.edit_message_text(chat_id = call.message.chat.id, message_id = call.message.message_id, text ='https://www.citilink.ru/product/videokarta-msi-pci-e-4-0-rtx-4090-suprim-24g-nv-rtx4090-24576mb-384-gd-1896098/', reply_markup = markup_gpu)
 
-                                                За любой помощью обращайтесь на ресепшн. К вашим услугам: химчистка, прачечная, обслуживание номеров, консьерж-сервис, камера хранения.\n\n\n\nhttps://travel.yandex.ru/hotels/krasnodar-krai/arfa/?adults=2&checkinDate=2023-03-22&checkoutDate=2023-03-23&childrenAges=&searchPagePollingId=39f87a9214b28df624cb8700e219c82e-0-newsearch&seed=portal-hotels-search''')
+@bot.callback_query_handler(func = lambda call: call.data == 'Gigabyte(gpu)')
 
-@bot.callback_query_handler(func = lambda callback: callback.data == 'Лес')
+def send_gigabyte_gpu(call):
 
-def send_les(callback):
+    bot.edit_message_text(chat_id = call.message.chat.id, message_id = call.message.message_id, text ='https://www.citilink.ru/product/videokarta-gigabyte-pci-e-4-0-gv-n4090gaming-24gd-nv-rtx4090-24576mb-3-1893334/', reply_markup = markup_gpu)
 
-    bot.send_message(callback.message.chat.id, '''Здесь созданы все условия для комфортного проживания — есть кондиционер, холодильник, фен, утюг, чай/кофе в номерах, чайник, кофеварка, сейф, отопление, терраса, мини-бар. В гостинице около 24 номеров — можно выбрать любой понравившийся и узнать подробнее, что в нём. По запросу предоставляются номера для некурящих. Уборка — каждый день.
+@bot.callback_query_handler(func = lambda call: call.data == 'Palit')
 
-                                                Берите своих питомцев — им будут рады!
+def send_palit(call):
 
-                                                В гостинице есть ресторан, бар, сауна. Можно прогуляться по территории и в саду. И вы наверняка захотите отдохнуть у бассейна — он тут тоже есть. Причём открытый, сезонный, с подогревом. Есть возможность взять напрокат велосипед.
+    bot.edit_message_text(chat_id = call.message.chat.id, message_id = call.message.message_id, text ='https://www.citilink.ru/product/videokarta-palit-pci-e-4-0-pa-rtx4090-gamerock-nv-rtx4090-24576mb-384-1859908/', reply_markup = markup_gpu)
 
-                                                У каждого гостя будет доступ в интернет, вы сможете выложить фотографии, отправить файл или позвонить родным по видео.
+@bot.callback_query_handler(func = lambda call: call.data == 'Corsair')
 
-                                                Учитывайте время заселения в гостиницу. Заезд здесь начинается с 14:00, выехать нужно до 12:00. Даже если вы прибудете поздно ночью, вас встретят на круглосуточной стойке регистрации и помогут с размещением.
+def send_corsair(call):
 
-                                                Если вы на машине, можете оставить её на парковке.
+    bot.edit_message_text(chat_id = call.message.chat.id, message_id = call.message.message_id, text ='https://www.citilink.ru/product/pamyat-ddr4-32gb-5600mhz-corsair-cmt64gx5m2b5600c40-rtl-dimm-rtl-1909871/', reply_markup = markup_ram)
 
-                                                За любой помощью обращайтесь на ресепшн. К вашим услугам: химчистка, прачечная, обслуживание номеров, камера хранения.\n\n\n\nhttps://travel.yandex.ru/hotels/sochi/les-glemping-i-spa/?adults=2&checkinDate=2023-03-22&checkoutDate=2023-03-23&childrenAges=&searchPagePollingId=39f87a9214b28df624cb8700e219c82e-0-newsearch&seed=portal-hotels-search''')
+@bot.callback_query_handler(func = lambda call: call.data == 'Kingston Fury')
 
-@bot.callback_query_handler(func = lambda callback: callback.data == 'Националь')
+def send_kingston_fury(call):
 
-def send_national(callback):
+    bot.edit_message_text(chat_id = call.message.chat.id, message_id = call.message.message_id, text ='https://www.citilink.ru/product/pamyat-ddr4-4x131072-3600mhz-kingston-kf436c18bbk4-128-fury-beast-blac-1914364/', reply_markup = markup_ram)
 
-    bot.send_message(callback.message.chat.id, '''Здесь созданы все условия для комфортного проживания — есть кондиционер, телевизор, фен, утюг, чай/кофе в номерах, чайник, сейф, отопление, мини-бар. В гостинице около 202 номеров — можно выбрать любой понравившийся и узнать подробнее, что в нём. По запросу предоставляются номера для некурящих. Уборка — каждый день.
+@bot.callback_query_handler(func = lambda call: call.data == 'Toshiba')
 
-                                                В гостинице есть ресторан, бар, тренажёрный зал, сауна, конференц-зал. И вы наверняка захотите отдохнуть у бассейна — он тут тоже есть. Причём крытый, с подогревом.
+def send_toshiba(call):
 
-                                                У каждого гостя будет доступ в интернет, вы сможете выложить фотографии, отправить файл или позвонить родным по видео.
+    bot.edit_message_text(chat_id = call.message.chat.id, message_id = call.message.message_id, text ='https://www.citilink.ru/product/zhestkii-disk-toshiba-sata-iii-14tb-mg07aca14te-enterprise-capacity-72-1794294/', reply_markup = markup_ram)
 
-                                                Учитывайте время заселения в гостиницу. Заезд здесь начинается с 14:00, выехать нужно до 12:00. Даже если вы прибудете поздно ночью, вас встретят на круглосуточной стойке регистрации и помогут с размещением. Лифт внутри есть.
+@bot.callback_query_handler(func = lambda call: call.data == 'WD Gold')
 
-                                                Если вы на машине, можете оставить её на парковке.
+def send_wd_gold(call):
 
-                                                За любой помощью обращайтесь на ресепшн. К вашим услугам: химчистка, прачечная, обслуживание номеров, консьерж-сервис, камера хранения, ускоренная регистрация заезда/отъезда.\n\n\n\nhttps://travel.yandex.ru/hotels/moscow/natsional/?adults=2&checkinDate=2023-03-29&checkoutDate=2023-03-30&childrenAges=&searchPagePollingId=f4b24c39c8654dbae2e9785d6e93b144-0-newsearch&seed=portal-hotels-search''')
+    bot.edit_message_text(chat_id = call.message.chat.id, message_id = call.message.message_id, text ='https://www.citilink.ru/product/zhestkii-disk-wd-sata-iii-18tb-wd181kryz-gold-7200rpm-512mb-3-5-1862211/', reply_markup = markup_hdd)
 
-@bot.callback_query_handler(func = lambda callback: callback.data == 'Хилтон')
+@bot.callback_query_handler(func = lambda call: call.data == 'WD Purple Pro')
 
-def send_hilton(callback):
+def send_wd_purple_pro(call):
 
-    bot.send_message(callback.message.chat.id, '''Здесь созданы все условия для комфортного проживания — есть кондиционер, телевизор, фен, утюг, чай/кофе в номерах, сейф, отопление, мини-бар. В гостинице около 273 номеров — можно выбрать любой понравившийся и узнать подробнее, что в нём. По запросу предоставляются номера для некурящих. Уборка — каждый день.
+    bot.edit_message_text(chat_id = call.message.chat.id, message_id = call.message.message_id, text ='https://www.citilink.ru/product/zhestkii-disk-wd-sata-iii-18tb-wd181purp-purple-pro-7200rpm-512mb-3-5-1744121/', reply_markup = markup_hdd)
 
-                                                Берите своих питомцев — им будут рады!
+@bot.callback_query_handler(func = lambda call: call.data == 'WD Red Pro')
 
-                                                В гостинице есть ресторан, бар, тренажёрный зал, сауна, конференц-зал. И вы наверняка захотите отдохнуть у бассейна — он тут тоже есть. Причём крытый, с подогревом.
+def send_wd_red_pro(call):
 
-                                                У каждого гостя будет доступ в интернет, вы сможете выложить фотографии, отправить файл или позвонить родным по видео.
+    bot.edit_message_text(chat_id = call.message.chat.id, message_id = call.message.message_id, text ='https://www.citilink.ru/product/zhestkii-disk-wd-sata-iii-12tb-wd121kfbx-red-pro-7200rpm-256mb-3-5-1878706/', reply_markup = markup_hdd)
 
-                                                Учитывайте время заселения в гостиницу. Заезд здесь начинается с 14:00, выехать нужно до 12:00. Даже если вы прибудете поздно ночью, вас встретят на круглосуточной стойке регистрации и помогут с размещением. Лифт внутри есть.
+@bot.callback_query_handler(func = lambda call: call.data == 'Seagate')
 
-                                                Если вы добираетесь своим ходом, воспользуйтесь услугой трансфера.
+def send_seagate(call):
 
-                                                За любой помощью обращайтесь на ресепшн. К вашим услугам: химчистка, прачечная, обслуживание номеров, консьерж-сервис, камера хранения.\n\n\n\nhttps://travel.yandex.ru/hotels/moscow/khilton-moskva-leningradskaia/?adults=2&checkinDate=2023-03-29&checkoutDate=2023-03-30&childrenAges=&searchPagePollingId=f4b24c39c8654dbae2e9785d6e93b144-0-newsearch&seed=portal-hotels-search''')
+    bot.edit_message_text(chat_id = call.message.chat.id, message_id = call.message.message_id, text ='https://www.citilink.ru/product/zhestkii-disk-seagate-sata-iii-16tb-st16000ne000-ironwolf-pro-7200rpm-1739583/', reply_markup = markup_hdd)
+
+@bot.callback_query_handler(func = lambda call: call.data == 'Intel')
+
+def send_intel(call):
+
+    bot.edit_message_text(chat_id = call.message.chat.id, message_id = call.message.message_id, text ='https://www.citilink.ru/product/nakopitel-ssd-intel-s-pci-e-x4-7-5tb-ssdpe2ke076t801-dc-p4610-2-5-1725634/', reply_markup = markup_ssd)
+
+@bot.callback_query_handler(func = lambda call: call.data == 'Ultrastar')
+
+def send_ultrastar(call):
+
+    bot.edit_message_text(chat_id = call.message.chat.id, message_id = call.message.message_id, text ='https://www.citilink.ru/product/nakopitel-ssd-wd-pci-e-3-1-6-25tb-0ts1878-wus4c6464dsp3x1-ultrastar-dc-1616802/', reply_markup = markup_ssd)
+
+@bot.callback_query_handler(func = lambda call: call.data =='Kingston')
+
+def send_kingston(call):
+
+    bot.edit_message_text(chat_id = call.message.chat.id, message_id = call.message.message_id, text ='https://www.citilink.ru/product/nakopitel-ssd-kingston-pci-e-3-0-7-5tb-sedc1500m-7680g-dc1500m-2-5-1641746/', reply_markup = markup_ssd)
+
+@bot.callback_query_handler(func = lambda call: call.data == 'Samsung')
+
+def send_samsung(call):
+
+    bot.edit_message_text(chat_id = call.message.chat.id, message_id = call.message.message_id, text ='https://www.citilink.ru/product/nakopitel-ssd-samsung-s-sata-iii-7-5tb-mz7l37t6hbla-00a07-pm893-2-5-1877890/', reply_markup = markup_ssd)
+
+@bot.callback_query_handler(func = lambda call: call.data == 'Cooler Master(power)')
+
+def send_cooler_master_power(call):
+
+    bot.edit_message_text(chat_id = call.message.chat.id, message_id = call.message.message_id, text ='https://www.citilink.ru/product/blok-pitaniya-cooler-master-atx-2000w-m2000-80-platinum-24-8-4-4pin-ap-1847038/', reply_markup = markup_power)
+
+@bot.callback_query_handler(func = lambda call: call.data == 'Thermaltake')
+
+def send_thermaltake(call):
+
+    bot.edit_message_text(chat_id = call.message.chat.id, message_id = call.message.message_id, text ='https://www.citilink.ru/product/blok-pitaniya-thermaltake-atx-1500w-toughpower-grand-tf1-80-titanium-2-1486287/', reply_markup = markup_power)
+
+@bot.callback_query_handler(func = lambda call: call.data == 'Gigabyte(power)')
+
+def send_gigabyte_power(call):
+
+    bot.edit_message_text(chat_id = call.message.chat.id, message_id = call.message.message_id, text ='https://www.citilink.ru/product/blok-pitaniya-gigabyte-atx-1200w-gp-ap1200pm-80-platinum-24-4-4pin-apf-1624953/', reply_markup = markup_power)
+
+@bot.callback_query_handler(func = lambda call: call.data == 'Zalman(power)')
+
+def send_zalman(call):
+
+    bot.edit_message_text(chat_id = call.message.chat.id, message_id = call.message.message_id, text ='https://www.citilink.ru/product/blok-pitaniya-zalman-atx-850w-zm850-arx-80-platinum-20-4pin-apfc-135mm-1774665/', reply_markup = markup_power)
+    
 
 bot.polling(non_stop = True)
-
