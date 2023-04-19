@@ -1,21 +1,11 @@
+# coding=UTF-8
 import telebot
 from telebot import types
 from time import sleep
 from environs import Env
-from dotenv import load_dotenv
-import os
-# bot = telebot.TeleBot()
 
-
-# if __name__ == '__main__':
-
-env = Env()
-env.read_env()
-telegram_bot_api_key = env('TELEGRAM_BOT_API_KEY')
-bot = telebot.TeleBot(telegram_bot_api_key)
-    
+bot = telebot.TeleBot('superpupermegaultratoken123')   
 number_of_incorrect_answers_given = 0   
-
 def send_message_about_the_incorrect_choice(call, markup):
 
     global number_of_incorrect_answers_given, return_vars
@@ -279,7 +269,7 @@ def send_question_20(call):
 
 def check_questions(call):
     
-    # try:
+    try:
         if call.message:
             
 
@@ -505,6 +495,6 @@ def check_questions(call):
             
             elif call.data == 'Сатурн': send_message_about_the_incorrect_choice(call, markup_question_20)
             
-    # except: bot.send_message(call.message.chat.id, 'Соединение с сервером разорвано. Чтобы продолжить, перезапустите, пожалуйста, бота, введя /start')
+    except: bot.send_message(call.message.chat.id, 'Соединение с сервером разорвано. Чтобы продолжить, перезапустите, пожалуйста, бота, введя /start')
 
 bot.polling(non_stop = True)
